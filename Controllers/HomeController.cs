@@ -20,7 +20,7 @@ public class HomeController : Controller
         _createProduct = createProduct;
     }
 
-    public async Task<IActionResult> Index(int page = 1, int take = 10)
+    public async Task<IActionResult> Index(int page = 1, int take = 5)
     {
         if (page < 1) {
             page = 1;
