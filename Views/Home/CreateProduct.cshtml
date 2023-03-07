@@ -6,7 +6,8 @@
 <div class="container-fluid justify-content-center" style="max-width: 75ch">
     <h1 class="display-5 text-center">@ViewData["Title"]</h1>
 
-    <form class="d-flex flex-column mt-4" style="gap: 1rem">
+    <form id="create-product-form" asp-action="Create" asp-controller="Home" method="post" class="d-flex flex-column mt-4" style="gap: 1rem">
+        @Html.AntiForgeryToken();
         <div>
             <label for="product-name" class="form-label">Nombre:</label>
             <input type="text" class="form-control" id="product-name" name="name" placeholder="Nombre del producto...">
@@ -14,14 +15,14 @@
 
         <div>
             <label for="product-description" class="form-label">Descripcion:</label>
-            <textarea class="form-control" id="product-description" placeholder="Descripcion del producto..." rows="3"></textarea>
+            <textarea class="form-control" id="product-description" name="description" placeholder="Descripcion del producto..." rows="3"></textarea>
         </div>
 
         <div>
             <label for="product-price" class="form-label">Precio:</label>
             <div class="input-group mb-3">
                 <span class="input-group-text">Q</span>
-                <input type="number" class="form-control" id="product-price" placeholder="9.99" aria-label="Amount (to the nearest dollar)">
+                <input type="number" class="form-control" id="product-price" name="price" placeholder="9.99" aria-label="Amount (to the nearest dollar)">
             </div>
         </div>
         <div>
@@ -31,3 +32,11 @@
     </form>
     
 </div>
+
+<script>
+    const form = document.querySelector('form');
+
+    form.onsubmit = (e) => {
+        console.log(Object.fromEntries(new FormData(form).entries()));
+    }
+</script>
