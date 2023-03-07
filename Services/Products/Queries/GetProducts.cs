@@ -13,7 +13,7 @@ public class GetProducts {
     }
 
     public async Task<DataCollection<Product>> Get(int page, int take) {
-        var products = await _context.Products.GetPagedAsync(page, take);
+        var products = await _context.Products.OrderByDescending(product => product.Created).GetPagedAsync(page, take);
 
         return products;
     }
