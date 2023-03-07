@@ -41,7 +41,7 @@
          Se eliminara el producto de forma permanente. ¿Desea continuar?
       </div>
       <div class="modal-footer">
-        <form asp-action="DeleteProduct" asp-controller="Home" method="post">
+        <form asp-action="DeleteProduct" asp-controller="Products" method="post">
             @Html.HiddenFor(model => model.Id)
             <button type="submit" class="btn btn-danger">Eliminar</button>
         </form>

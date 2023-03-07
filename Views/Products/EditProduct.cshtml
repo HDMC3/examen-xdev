@@ -6,7 +6,7 @@
 <div class="container-fluid justify-content-center" style="max-width: 75ch">
     <h1 class="display-5 text-center">Editar producto</h1>
 
-    <form asp-action="Edit" asp-controller="Home" method="post" class="d-flex flex-column mt-4" style="gap: 1rem">
+    <form asp-action="Edit" asp-controller="Products" method="post" class="d-flex flex-column mt-4" style="gap: 1rem">
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.Id)
         <div>
@@ -28,7 +28,7 @@
         </div>
         <div>
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <a class="btn btn-secondary" asp-action="Index" asp-controller="Home">Cancelar</a>
+            <a class="btn btn-secondary" asp-action="Index" asp-controller="Products">Cancelar</a>
         </div>
     </form>
 </div>

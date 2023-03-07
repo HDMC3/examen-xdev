@@ -7,7 +7,7 @@ using ProductsApp.Services.Products.Queries;
 
 namespace ProductsApp.Controllers;
 
-public class HomeController : Controller
+public class ProductsController : Controller
 {
     private readonly GetProducts _getProducts;
     private readonly CreateProduct _createProduct;
@@ -16,7 +16,7 @@ public class HomeController : Controller
     private readonly EditProduct _editProduct;
     private readonly DeleteProduct _deleteProduct;
 
-    public HomeController(
+    public ProductsController(
         GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById,
         GetProductToEdit getProductToEdit, EditProduct editProduct, DeleteProduct deleteProduct
     )

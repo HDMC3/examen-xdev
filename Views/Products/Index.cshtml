@@ -6,7 +6,7 @@
 <div class="container-fluid justify-content-center" style="max-width: 75ch">
     <h1 class="display-5 text-center">Poductos</h1>
     <div class="container-fluid px-0">
-        <a class="btn btn-primary btn-sm" role="button" asp-controller="Home" asp-action="CreateProduct">Nuevo producto</a>
+        <a class="btn btn-primary btn-sm" role="button" asp-controller="Products" asp-action="CreateProduct">Nuevo producto</a>
     </div>
     <div class="table-responsive mt-4">
         <table class="table table-hover">
@@ -23,8 +23,8 @@
                         <td>@product.Name</td>
                         <td>@product.Price</td>
                         <td style="width: 150px">
-                            @Html.ActionLink("Detalles", "ProductDetails", "Home", new { id = product.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-sm" })
-                            @Html.ActionLink("Editar", "EditProduct", "Home", new { id = product.Id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
+                            @Html.ActionLink("Detalles", "ProductDetails", "Products", new { id = product.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-sm" })
+                            @Html.ActionLink("Editar", "EditProduct", "Products", new { id = product.Id }, htmlAttributes: new { @class = "btn btn-primary btn-sm" })
                         </td>
                     </tr>
                 }
@@ -42,16 +42,16 @@
         <ul class="pagination justify-content-end">
             
             <li class="page-item @(Model.Page > 1 ? "" : "disabled")">
-                @Html.ActionLink("Anterior", "Index", "Home", new { page = Model.Page - 1 }, htmlAttributes: new { @class = "page-link" })
+                @Html.ActionLink("Anterior", "Index", "Products", new { page = Model.Page - 1 }, htmlAttributes: new { @class = "page-link" })
             </li>
             @for (var i = 1; i <= Model.Pages; i++)
             {
                 <li class="page-item @(Model.Page == i ? "active" : "")">
-                    @Html.ActionLink($"{@i}", "Index", "Home", new { page = @i }, htmlAttributes: new { @class = "page-link" })
+                    @Html.ActionLink($"{@i}", "Index", "Products", new { page = @i }, htmlAttributes: new { @class = "page-link" })
                 </li>
             }
             <li class="page-item @(Model.Page < Model.Pages ? "" : "disabled")">
-                @Html.ActionLink("Siguiente", "Index", "Home", new { page = Model.Page + 1 }, htmlAttributes: new { @class = "page-link" })
+                @Html.ActionLink("Siguiente", "Index", "Products", new { page = Model.Page + 1 }, htmlAttributes: new { @class = "page-link" })
             </li>
         </ul>
     </nav>
