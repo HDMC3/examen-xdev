@@ -1,21 +1,28 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using ProductsApp.Data;
 using ProductsApp.Models;
+using ProductsApp.Services.Products.Queries;
 
 namespace ProductsApp.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly GetProducts _getProducts;
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
+    public HomeController(GetProducts getProducts)
+    {   
+        _getProducts = getProducts;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index(int page, int take = 10)
     {
-        return View();
+        if (page < 1) {
+            page = 1;
+        }
+        
+        var products = await _getProducts.Get(page, take);
+        return View(products);
     }
 
     public IActionResult Privacy()
