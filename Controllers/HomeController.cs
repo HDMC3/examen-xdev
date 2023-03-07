@@ -14,12 +14,17 @@ public class HomeController : Controller
     private readonly GetProducts _getProducts;
     private readonly CreateProduct _createProduct;
     private readonly GetProductDetail _getProductById;
+    private readonly GetProductToEdit _getProductToEdit;
 
-    public HomeController(GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById)
+    public HomeController(
+        GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById,
+        GetProductToEdit getProductToEdit
+    )
     {   
         _getProducts = getProducts;
         _createProduct = createProduct;
         _getProductById = getProductById;
+        _getProductToEdit = getProductToEdit;
     }
 
     public async Task<IActionResult> Index(int page = 1, int take = 5)
@@ -55,7 +60,8 @@ public class HomeController : Controller
 
     [Route("Edit/{id}")]
     public async Task<IActionResult> EditProduct(int id) {
-        return View();
+        var model = await _getProductToEdit.Get(id);
+        return View(model);
     }
 
     public IActionResult Privacy()

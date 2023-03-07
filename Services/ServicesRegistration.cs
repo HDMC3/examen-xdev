@@ -10,5 +10,6 @@ public static class ServicesRegistration
         services.AddScoped<GetProducts>();
         services.AddScoped<CreateProduct>();
         services.AddScoped<GetProductDetail>();
+        services.AddScoped<GetProductToEdit>();
     }
 }
