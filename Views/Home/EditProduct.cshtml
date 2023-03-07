@@ -7,8 +7,8 @@
     <h1 class="display-5 text-center">Editar producto</h1>
 
     <form asp-action="Edit" asp-controller="Home" method="post" class="d-flex flex-column mt-4" style="gap: 1rem">
-        @Html.AntiForgeryToken();
-        @Html.HiddenFor(model => model.Id);
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
         <div>
             <label asp-for="Name" class="form-label">Nombre:</label>
             <input asp-for="Name" type="text" class="form-control" placeholder="Nombre del producto...">

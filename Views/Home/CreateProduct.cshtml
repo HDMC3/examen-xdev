@@ -6,7 +6,7 @@
     <h1 class="display-5 text-center">@ViewData["Title"]</h1>
 
     <form id="create-product-form" asp-action="Create" asp-controller="Home" method="post" class="d-flex flex-column mt-4" style="gap: 1rem">
-        @Html.AntiForgeryToken();
+        @Html.AntiForgeryToken()
         <div>
             <label for="product-name" class="form-label">Nombre:</label>
             <input type="text" class="form-control" id="product-name" name="name" placeholder="Nombre del producto...">
