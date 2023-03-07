@@ -20,9 +20,13 @@ public class HomeController : Controller
         if (page < 1) {
             page = 1;
         }
-        
+
         var products = await _getProducts.Get(page, take);
         return View(products);
+    }
+
+    public IActionResult CreateProduct() {
+        return View();
     }
 
     public IActionResult Privacy()
