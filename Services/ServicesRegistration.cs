@@ -12,5 +12,6 @@ public static class ServicesRegistration
         services.AddScoped<GetProductDetail>();
         services.AddScoped<GetProductToEdit>();
         services.AddScoped<EditProduct>();
+        services.AddScoped<DeleteProduct>();
     }
 }

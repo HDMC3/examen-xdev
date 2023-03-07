@@ -22,6 +22,33 @@
     <div class="text-muted text-end mt-4">
         Producto creado el @Model.Created
     </div>
+
+    <hr class="my-4">
+
+    <div class="d-flex justify-content-center">
+        <button id="show-delete-modal-button" type="button" class="btn btn-danger">Eliminar producto</button>
+    </div>
+</div>
+
+<div class="modal fade" id="delete-product-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar producto</h5>
+        <button id="close-button" type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         Se eliminara el producto de forma permanente. ¿Desea continuar?
+      </div>
+      <div class="modal-footer">
+        <form asp-action="DeleteProduct" asp-controller="Home" method="post">
+            @Html.HiddenFor(model => model.Id)
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+        <button id="cancel-button" type="button" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -29,5 +56,5 @@
 
     backButton.onclick = () => {
         history.go(-1);
-    } 
+    }
 </script>

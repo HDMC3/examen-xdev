@@ -14,10 +14,11 @@ public class HomeController : Controller
     private readonly GetProductDetail _getProductById;
     private readonly GetProductToEdit _getProductToEdit;
     private readonly EditProduct _editProduct;
+    private readonly DeleteProduct _deleteProduct;
 
     public HomeController(
         GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById,
-        GetProductToEdit getProductToEdit, EditProduct editProduct
+        GetProductToEdit getProductToEdit, EditProduct editProduct, DeleteProduct deleteProduct
     )
     {   
         _getProducts = getProducts;
@@ -25,6 +26,7 @@ public class HomeController : Controller
         _getProductById = getProductById;
         _getProductToEdit = getProductToEdit;
         _editProduct = editProduct;
+        _deleteProduct = deleteProduct;
     }
 
     public async Task<IActionResult> Index(int page = 1, int take = 5)
@@ -74,6 +76,12 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpPost]
+    public async Task<IActionResult> DeleteProduct(int id) {
+        await _deleteProduct.Handle(id);
+
+        return RedirectToAction("Index");
+    }
     public IActionResult Privacy()
     {
         return View();
