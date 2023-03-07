@@ -1,4 +1,3 @@
-@model DataCollection<ProductsApp.Data.Entities.Product>;
 @{
     ViewData["Title"] = "Nuevo producto";
 }
@@ -22,7 +21,7 @@
             <label for="product-price" class="form-label">Precio:</label>
             <div class="input-group mb-3">
                 <span class="input-group-text">Q</span>
-                <input type="number" class="form-control" id="product-price" name="price" placeholder="9.99" aria-label="Amount (to the nearest dollar)">
+                <input type="number" step="0.01" class="form-control" id="product-price" name="price" placeholder="9.99" aria-label="Amount (to the nearest dollar)">
             </div>
         </div>
         <div>
