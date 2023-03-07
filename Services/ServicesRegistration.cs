@@ -9,5 +9,6 @@ public static class ServicesRegistration
     public static void AddAppServices(this IServiceCollection services) {
         services.AddScoped<GetProducts>();
         services.AddScoped<CreateProduct>();
+        services.AddScoped<GetProductById>();
     }
 }
