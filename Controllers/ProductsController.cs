@@ -50,6 +50,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(CreateProductRequest product) {
         if (!ModelState.IsValid) {
             return RedirectToAction("Error");
@@ -67,6 +68,7 @@ public class ProductsController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(EditProductRequest product) {
         if (!ModelState.IsValid) {
             return RedirectToAction("Error");
