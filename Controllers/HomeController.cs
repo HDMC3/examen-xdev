@@ -53,6 +53,10 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
 
+    public IActionResult EditProduct() {
+        return View();
+    }
+
     public IActionResult Privacy()
     {
         return View();
