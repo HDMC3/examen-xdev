@@ -13,11 +13,13 @@ public class HomeController : Controller
 {
     private readonly GetProducts _getProducts;
     private readonly CreateProduct _createProduct;
+    private readonly GetProductById _getProductById;
 
-    public HomeController(GetProducts getProducts, CreateProduct createProduct)
+    public HomeController(GetProducts getProducts, CreateProduct createProduct, GetProductById getProductById)
     {   
         _getProducts = getProducts;
         _createProduct = createProduct;
+        _getProductById = getProductById;
     }
 
     public async Task<IActionResult> Index(int page = 1, int take = 5)
@@ -31,8 +33,9 @@ public class HomeController : Controller
     }
 
     [HttpGet("{id}")]
-    public IActionResult ProductDetails(int id) {
-        return View();
+    public async Task<IActionResult> ProductDetails(int id) {
+        var model = await _getProductById.Get(id);
+        return View(model);
     }
 
     public IActionResult CreateProduct() {
