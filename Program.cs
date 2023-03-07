@@ -1,3 +1,4 @@
+using ProductsApp.Services;
 using Microsoft.EntityFrameworkCore;
 using ProductsApp.Data;
 
@@ -10,6 +11,8 @@ builder.Services.AddDbContext<ProductsAppDbContext>(options => {
     var conectionString = builder.Configuration.GetConnectionString("ProductsAppContext");
     options.UseSqlServer(conectionString);
 });
+
+builder.Services.AddAppServices();
 
 var app = builder.Build();
 

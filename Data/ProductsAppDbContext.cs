@@ -6,7 +6,7 @@ namespace ProductsApp.Data;
 
 public class ProductsAppDbContext : DbContext {
 
-    DbSet<Product> Products { get; set; }
+    public DbSet<Product> Products { get; set; }
 
     public ProductsAppDbContext(DbContextOptions<ProductsAppDbContext> options) : base(options) { }
 
