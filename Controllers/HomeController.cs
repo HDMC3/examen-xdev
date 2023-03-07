@@ -13,9 +13,9 @@ public class HomeController : Controller
 {
     private readonly GetProducts _getProducts;
     private readonly CreateProduct _createProduct;
-    private readonly GetProductById _getProductById;
+    private readonly GetProductDetail _getProductById;
 
-    public HomeController(GetProducts getProducts, CreateProduct createProduct, GetProductById getProductById)
+    public HomeController(GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById)
     {   
         _getProducts = getProducts;
         _createProduct = createProduct;
@@ -32,7 +32,7 @@ public class HomeController : Controller
         return View(products);
     }
 
-    [HttpGet("{id}")]
+    [Route("Details/{id}")]
     public async Task<IActionResult> ProductDetails(int id) {
         var model = await _getProductById.Get(id);
         return View(model);
@@ -53,7 +53,8 @@ public class HomeController : Controller
         return RedirectToAction("Index");
     }
 
-    public IActionResult EditProduct() {
+    [Route("Edit/{id}")]
+    public async Task<IActionResult> EditProduct(int id) {
         return View();
     }
 

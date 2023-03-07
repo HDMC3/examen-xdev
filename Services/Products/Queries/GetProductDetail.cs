@@ -4,10 +4,10 @@ using ProductsApp.Models;
 
 namespace ProductsApp.Services.Products.Queries;
 
-public class GetProductById {
+public class GetProductDetail {
     private readonly ProductsAppDbContext _context;
 
-    public GetProductById(ProductsAppDbContext context) {
+    public GetProductDetail(ProductsAppDbContext context) {
         _context = context;
     }
 
