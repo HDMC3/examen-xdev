@@ -30,6 +30,11 @@ public class HomeController : Controller
         return View(products);
     }
 
+    [HttpGet("{id}")]
+    public IActionResult ProductDetails(int id) {
+        return View();
+    }
+
     public IActionResult CreateProduct() {
         return View();
     }

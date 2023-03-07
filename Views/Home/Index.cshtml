@@ -14,6 +14,7 @@
                 <tr>
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,8 +22,13 @@
                     <tr>
                         <td>@product.Name</td>
                         <td>@product.Price</td>
+                        <td style="width: 150px">
+                            @Html.ActionLink("Detalles", "ProductDetails", "Home", new { id = product.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-sm" })
+                            <a class="btn btn-primary btn-sm">Editar</a>
+                        </td>
                     </tr>
                 }
+                    51:53
             </tbody>
         </table>
     </div>
