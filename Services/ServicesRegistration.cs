@@ -1,4 +1,5 @@
 using System.Reflection;
+using ProductsApp.Services.Files;
 using ProductsApp.Services.Products.Handlers;
 using ProductsApp.Services.Products.Queries;
 
@@ -13,5 +14,6 @@ public static class ServicesRegistration
         services.AddScoped<GetProductToEdit>();
         services.AddScoped<EditProduct>();
         services.AddScoped<DeleteProduct>();
+        services.AddScoped<GenerateProductsSpreadsheet>();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ProductsApp.Models;
+using ProductsApp.Services.Files;
 using ProductsApp.Services.Products.DTOs;
 using ProductsApp.Services.Products.Handlers;
 using ProductsApp.Services.Products.Queries;
@@ -15,10 +16,12 @@ public class ProductsController : Controller
     private readonly GetProductToEdit _getProductToEdit;
     private readonly EditProduct _editProduct;
     private readonly DeleteProduct _deleteProduct;
+    private readonly GenerateProductsSpreadsheet _generateProductsSpreadsheet;
 
     public ProductsController(
         GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById,
-        GetProductToEdit getProductToEdit, EditProduct editProduct, DeleteProduct deleteProduct
+        GetProductToEdit getProductToEdit, EditProduct editProduct, DeleteProduct deleteProduct,
+        GenerateProductsSpreadsheet generateProductsSpreadsheet
     )
     {   
         _getProducts = getProducts;
@@ -27,6 +30,7 @@ public class ProductsController : Controller
         _getProductToEdit = getProductToEdit;
         _editProduct = editProduct;
         _deleteProduct = deleteProduct;
+        _generateProductsSpreadsheet = generateProductsSpreadsheet;
     }
 
     public async Task<IActionResult> Index(int page = 1, int take = 5)
@@ -83,6 +87,15 @@ public class ProductsController : Controller
         await _deleteProduct.Handle(id);
 
         return RedirectToAction("Index");
+    }
+
+    public async Task<FileResult> GenerateSpreadsheet() {
+        var xlWorkBook = await _generateProductsSpreadsheet.Generate();
+
+        using var stream = new MemoryStream();
+
+        xlWorkBook.SaveAs(stream);
+        return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "listado-productos.xlsx");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
