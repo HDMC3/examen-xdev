@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using ProductsApp.Data;
 using ProductsApp.Models;
 using ProductsApp.Services.Products.DTOs;
 using ProductsApp.Services.Products.Handlers;
@@ -15,16 +13,18 @@ public class HomeController : Controller
     private readonly CreateProduct _createProduct;
     private readonly GetProductDetail _getProductById;
     private readonly GetProductToEdit _getProductToEdit;
+    private readonly EditProduct _editProduct;
 
     public HomeController(
         GetProducts getProducts, CreateProduct createProduct, GetProductDetail getProductById,
-        GetProductToEdit getProductToEdit
+        GetProductToEdit getProductToEdit, EditProduct editProduct
     )
     {   
         _getProducts = getProducts;
         _createProduct = createProduct;
         _getProductById = getProductById;
         _getProductToEdit = getProductToEdit;
+        _editProduct = editProduct;
     }
 
     public async Task<IActionResult> Index(int page = 1, int take = 5)
@@ -62,6 +62,16 @@ public class HomeController : Controller
     public async Task<IActionResult> EditProduct(int id) {
         var model = await _getProductToEdit.Get(id);
         return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(EditProductRequest product) {
+        if (!ModelState.IsValid) {
+            return RedirectToAction("Error");
+        }
+
+        await _editProduct.Handle(product);
+        return RedirectToAction("Index");
     }
 
     public IActionResult Privacy()
